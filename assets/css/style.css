@@ -1,3 +1,13 @@
 #timer {
     text-align: right;
 }
+
+.title,
+.par {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+.start-btn {
+    text-align: center;
+    }
