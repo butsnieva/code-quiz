@@ -98,6 +98,46 @@ function closeOnClick() {
         display.remove()
 } 
 
+function questionEl() {
+    
+    for (var i = 0; i < questionArr.length; i++) {
+
+    var quizEl = document.createElement('div')
+    mainEl.appendChild(quizEl)
+
+    var question = document.createElement('h3')
+        question.className = 'question'
+        question.textContent = questionArr[i].question
+    quizEl.appendChild(question)
+
+    var answerOptions = document.createElement('div')
+        answerOptions.className = 'answers'
+    quizEl.appendChild(answerOptions)
+
+
+    //    FIGURE OUT HOW TO DRY THE FOLLOWING CODE
+            var optionOne = document.createElement('button')
+                optionOne.className = 'answer'
+                optionOne.textContent = questionArr[i].a
+            answerOptions.appendChild(optionOne)
+
+            var optionTwo = document.createElement('button')
+                optionTwo.className = 'answer'
+                optionTwo.textContent = questionArr[i].b
+            answerOptions.appendChild(optionTwo)
+
+            var optionThree = document.createElement('button')
+                optionThree.className = 'answer'
+                optionThree.textContent = questionArr[i].c
+            answerOptions.appendChild(optionThree)
+
+            var optionFour = document.createElement('button')
+                optionFour.className = 'answer'
+                optionFour.textContent = questionArr[i].d
+            answerOptions.appendChild(optionFour)
+    return quizEl
+    }
+}
 
 
 
