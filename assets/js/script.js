@@ -1,60 +1,68 @@
 var headerEl = document.querySelector('#header')
+var timeRemainingEl = document.querySelector('#timer')
 var mainEl = document.querySelector('#main')
 var startBtn = document.querySelector('#start-btn')
 var quizEl = document.querySelector('#quiz-questions')
 var questionEl = document.querySelector('#question')
 var choicesEl = document.querySelector('#choices')
 
+var questionId = 0
+var countTime = 60
+
 var questionArr = [
     {
         question: 'Question1',
-        a: 'one',
-        b: 'two',
-        c: 'three',
-        d: 'four',
-        correct: 'c'
+        choices: [
+            'one1',
+            'two1',
+            'three1',
+            'four1'],
+        correct: 'one1'
     },{
         question: 'Question2',
-        a: 'one',
-        b: 'two',
-        c: 'three',
-        d: 'four',
-        correct: 'c'
-    }, {
+        choices: [
+            'one2',
+            'two2',
+            'three2',
+            'four2'],
+        correct: 'one2'
+    },{
         question: 'Question3',
-        a: 'one',
-        b: 'two',
-        c: 'three',
-        d: 'four',
-        correct: 'c'
-    }, {
+        choices: [
+            'one3',
+            'two3',
+            'three3',
+            'four3'],
+        correct: 'one3'
+    },{
         question: 'Question4',
-        a: 'one',
-        b: 'two',
-        c: 'three',
-        d: 'four',
-        correct: 'c'
-    }, {
+        choices: [
+            'one4',
+            'two4',
+            'three4',
+            'four4'],
+        correct: 'one4'
+    },{
         question: 'Question5',
-        a: 'one',
-        b: 'two',
-        c: 'three',
-        d: 'four',
-        correct: 'c'
-    }]
+        choices: [
+            'one5',
+            'two5',
+            'three5',
+            'four5'],
+        correct: 'one5'
+    },
+]
     //console.log(questionArr)
 
 
 function countdown() {
     var timerEl = document.createElement('p')
-        timerEl.id = 'timer'
-    headerEl.appendChild(timerEl)
+    timeRemainingEl.appendChild(timerEl)
 
-    var count = 60
     var interval = setInterval(function() {
-        if (count >= 1) {
-            timerEl.textContent = 'Time: ' + count + 's'
-            count--
+        if (countTime >= 1) {
+            timerEl.textContent = 'Time: ' + countTime + 's'
+            countTime--
         } else {
             timerEl.textContent = ''
             alert('Time is out!')
@@ -62,22 +70,27 @@ function countdown() {
         }
     }, 1000)
 }
-
-startBtn.addEventListener('click', questionEl)
 startBtn.addEventListener('click', countdown)
+startBtn.addEventListener('click', quiz)
 
+function quiz() {
+    questionEl.textContent = questionArr[questionId].question
+        for (var i = 0; i < 4; i++) {
+            var choiceBtn = document.createElement('button')
+                choiceBtn.className = 'choice'
+                choiceBtn.textContent = questionArr[questionId].choices[i]
+            choicesEl.appendChild(choiceBtn)
+            choicesEl.setAttribute('id', i)
+        }
+    choicesEl.addEventListener('click', checkAnswer)
+}
 
-// function closeOnClick() {
-//     var display = document.querySelector('#welcome-msg')
-//         display.remove()
-// } 
-
-// function questionEl() {
-    
-//     for (var i = 0; i < questionArr.length; i++) {
-    
-//     } 
-// }
-
-
+function checkAnswer(event) {
+    if (event.target.textContent === questionArr[questionId].correct) {
+        alert('correct!')
+    } else {
+        alert('wrong')
+        countTime = countTime - 10
+    }
+}
 
