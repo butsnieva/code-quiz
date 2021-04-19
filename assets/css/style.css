@@ -2,12 +2,12 @@
     text-align: right;
 }
 
-.title,
-.par {
+h2,
+p {
     margin: auto;
     width: 60%;
     text-align: center;
 }
-.start-btn {
+#start-btn {
     text-align: center;
     }
