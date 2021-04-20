@@ -112,6 +112,10 @@ function score() {
     quizEl.innerHTML = ''
     clearInterval(interval)
     var finalScoreEl = document.createElement('div')
-    finalScoreEl.innerHTML = ('<h2>All Done!</h2><p>Your final score is ' + parseInt(countTime+1) + '!</p><div><p>Enter initials:</p><input type="text"></input><button>Submit</button></div>')
+    finalScoreEl.innerHTML = ('<h2>All Done!</h2><p>Your final score is ' + parseInt(countTime+1) + '!</p><div><p>Enter initials:</p><input type="text"></input><button id="submit-btn">Submit</button></div>')
     mainEl.appendChild(finalScoreEl)
+}
+
+function highScoreTable() {
+    
 }
