@@ -71,7 +71,7 @@ function countdown() {
         }
     }, 1000)
 }
-startBtn.addEventListener('click', countdown)
+//startBtn.addEventListener('click', countdown)
 startBtn.addEventListener('click', quiz)
 
 function quiz() {
