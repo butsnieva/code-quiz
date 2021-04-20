@@ -6,6 +6,8 @@ var startBtn = document.querySelector('#start-btn')
 var quizEl = document.querySelector('#quiz-questions')
 var questionEl = document.querySelector('#question')
 var choicesEl = document.querySelector('#choices')
+var scoreTable = document.querySelector('#score-table')
+var interval
 
 
 var questionId = 0
@@ -13,45 +15,45 @@ var countTime = 60
 
 var questionArr = [
     {
-        question: 'Question1',
+        question: 'Commonly used data types DO NOT include:',
         choices: [
-            'one1',
-            'two1',
-            'three1',
-            'four1'],
-        correct: 'one1'
+            '1. strings',
+            '2. alerts',
+            '3. booleans',
+            '4. numbers'],
+        correct: '2. alerts'
     },{
-        question: 'Question2',
+        question: 'The condition in an if / else statement is enclosed within ____.',
         choices: [
-            'one2',
-            'two2',
-            'three2',
-            'four2'],
-        correct: 'one2'
+            '1. parenthesis',
+            '2. curly brackets',
+            '3. square brackets',
+            '4. quotes'],
+        correct: '1. parenthesis'
     },{
-        question: 'Question3',
+        question: 'Arrays in JavaScript can be used to store ____.',
         choices: [
-            'one3',
-            'two3',
-            'three3',
-            'four3'],
-        correct: 'one3'
+            '1. booleans',
+            '2. other arrays',
+            '3. numbers and strings',
+            '4. all of the above'],
+        correct: '4. all of the above'
     },{
-        question: 'Question4',
+        question: 'String values must be enclosed within ____ when being assigned to variables.',
         choices: [
-            'one4',
-            'two4',
-            'three4',
-            'four4'],
-        correct: 'one4'
+            '1. curly brackets',
+            '2. commas',
+            '3. quotes',
+            '4. parenthesis'],
+        correct: '3. quotes'
     },{
-        question: 'Question5',
+        question: 'A very useful tool used during development and debugging for printing content to the debugger is:',
         choices: [
-            'one5',
-            'two5',
-            'three5',
-            'four5'],
-        correct: 'one5'
+            '1. JavaScript',
+            '2. terminal / bash',
+            '3. for loops',
+            '4. console.log'],
+        correct: '4. console.log'
     },
 ]
     //console.log(questionArr)
@@ -71,7 +73,7 @@ function countdown() {
         }
     }, 1000)
 }
-//startBtn.addEventListener('click', countdown)
+startBtn.addEventListener('click', countdown)
 startBtn.addEventListener('click', quiz)
 
 function quiz() {
@@ -112,10 +114,15 @@ function score() {
     quizEl.innerHTML = ''
     clearInterval(interval)
     var finalScoreEl = document.createElement('div')
-    finalScoreEl.innerHTML = ('<h2>All Done!</h2><p>Your final score is ' + parseInt(countTime+1) + '!</p><div><p>Enter initials:</p><input type="text"></input><button id="submit-btn">Submit</button></div>')
+    finalScoreEl.innerHTML = ('<h2>All Done!</h2><p>Your final score is ' + parseInt(countTime+1) + '!</p><div class="users-input"><p>Enter initials:</p><input type="text"></input><button id="submit-btn">Submit</button></div>')
     mainEl.appendChild(finalScoreEl)
 }
 
-function highScoreTable() {
-    
+function highScoreCreateRow() {
+    var tableRow = document.createElement('tr')
+    scoreTable.appendChild(tableRow)
+    var initials = document.createElement('th')
+    var score = document.createElement('th')
+    tableRow.appendChild(initials)
+    tableRow.appendChild(score)
 }
