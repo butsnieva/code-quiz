@@ -7,8 +7,6 @@ var quizEl = document.querySelector('#quiz-questions')
 var questionEl = document.querySelector('#question')
 var choicesEl = document.querySelector('#choices')
 var interval
-
-
 var questionId = 0
 var countTime = 60
 
@@ -136,23 +134,16 @@ function displayScore() {
             submitBtn.id = 'submit-btn'
             submitBtn.textContent = 'Submit'
         inputDiv.appendChild(submitBtn)
-
-
-
-
-
-
-
-
-
-    submitBtn.addEventListener('click', function(){
+        
+    var scoreList = JSON.parse(localStorage.getItem('userScore'))
+    if (!scoreList) scoreList = []
+    submitBtn.addEventListener('click', function(event){
         event.preventDefault()
-        var score = { score: countTime, name: inputBox.value.trim() };
-        localStorage.setItem("userScore", JSON.stringify(score))
-        window.location.assign("score-table.html")
+        var score = { score: countTime, name: inputBox.value.trim() }
+        scoreList.push(score)
+        localStorage.setItem('userScore', JSON.stringify(scoreList))
+        window.location.assign('score-table.html')
     })
-
-    console.log(inputBox.value)
 }
 
 
