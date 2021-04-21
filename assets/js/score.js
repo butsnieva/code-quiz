@@ -8,6 +8,7 @@ function createScoreTable() {
     scoreTable.appendChild(tableEl)
 
     var firstRow = document.createElement('tr')
+        firstRow.className = 'first-row'
     tableEl.appendChild(firstRow)
     var intlTtl = document.createElement('th')
         intlTtl.textContent = 'Initials'

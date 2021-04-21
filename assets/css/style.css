@@ -97,10 +97,39 @@ h3 {
     color: white;
 }
 table {
-    display: flex;
-    justify-content: center;
+width: 30%;
 }
 
 .score-tb-btns {
     text-align: center;
+    margin-top: 30px;
 }
+
+#score-table {
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+
+}
+table, th, td {
+    border: 1px solid lightgray;
+    border-collapse: collapse;
+}
+th {
+    padding: 5px;
+    font-weight: 400;
+}
+
+#high-scores {
+    margin-top: 80px;
+}
+
+table tr:nth-child(even) {
+    background: #f0e7f0;
+}
+
+table .first-row {
+    font-weight: bold;
+    background-color: rebeccapurple;
+    color: white;
+} 
