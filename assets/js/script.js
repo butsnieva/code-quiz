@@ -6,7 +6,6 @@ var startBtn = document.querySelector('#start-btn')
 var quizEl = document.querySelector('#quiz-questions')
 var questionEl = document.querySelector('#question')
 var choicesEl = document.querySelector('#choices')
-var scoreTable = document.querySelector('#score-table')
 var interval
 
 
@@ -96,33 +95,70 @@ function checkAnswer(event) {
     if (event.target.textContent === questionArr[questionId-1].correct) {
         alert('correct!')
             if (questionId === questionArr.length) {
-                score()
+                displayScore()
             }else{
                 quiz()}
     } else {
         alert('wrong')
         countTime = countTime - 10
             if (questionId === questionArr.length) {
-                score()
+                timeRemainingEl.innerHTML = ''
+                displayScore()
             }else{
                 quiz()}
     //debugger
 }}
 
 
-function score() {
+function displayScore() {
     quizEl.innerHTML = ''
+    timeRemainingEl.innerHTML = ''
     clearInterval(interval)
-    var finalScoreEl = document.createElement('div')
-    finalScoreEl.innerHTML = ('<h2>All Done!</h2><p>Your final score is ' + parseInt(countTime+1) + '!</p><div class="users-input"><p>Enter initials:</p><input type="text"></input><button id="submit-btn">Submit</button></div>')
-    mainEl.appendChild(finalScoreEl)
+        var finalScoreEl = document.createElement('div')
+        mainEl.appendChild(finalScoreEl)
+        var title = document.createElement('h2')
+            title.textContent = 'All Done!'
+        finalScoreEl.appendChild(title)
+        var usersScore = document.createElement('p')
+            usersScore.textContent = ('Your final score is ' + parseInt(countTime) + '!')
+        finalScoreEl.appendChild(usersScore)
+        var inputDiv = document.createElement('div')
+            inputDiv.className = 'users-input'
+        finalScoreEl.appendChild(inputDiv)
+        var inputLable = document.createElement('p')
+            inputLable.textContent = 'Enter initials:'
+        inputDiv.appendChild(inputLable)
+        var inputBox = document.createElement('input')
+            inputBox.type = 'text'
+            inputBox.id = 'usersName'
+        inputDiv.appendChild(inputBox)
+        var submitBtn = document.createElement('button')
+            submitBtn.id = 'submit-btn'
+            submitBtn.textContent = 'Submit'
+        inputDiv.appendChild(submitBtn)
+
+
+
+
+
+
+
+
+
+    submitBtn.addEventListener('click', function(){
+        event.preventDefault()
+        var score = { score: countTime, name: inputBox.value.trim() };
+        localStorage.setItem("userScore", JSON.stringify(score))
+        window.location.assign("score-table.html")
+    })
+
+    console.log(inputBox.value)
 }
 
-function highScoreCreateRow() {
-    var tableRow = document.createElement('tr')
-    scoreTable.appendChild(tableRow)
-    var initials = document.createElement('th')
-    var score = document.createElement('th')
-    tableRow.appendChild(initials)
-    tableRow.appendChild(score)
+
+function scoreHTML() {
+    //window.location.assign = ('score-table.html')
+    
+//     var addScoreToTable = {score: countTime, name: inputBox}.value
+//     console.log ()
 }
