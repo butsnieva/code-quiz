@@ -9,17 +9,22 @@ function createScoreTable() {
     var tableEl = document.createElement('table')
     scoreTable.appendChild(tableEl)
 
-    var firstRow = document.createElement('tr')
-        firstRow.className = 'first-row'
-    tableEl.appendChild(firstRow)
-    var intlTtl = document.createElement('th')
-        intlTtl.textContent = 'Initials'
-    var scoreTtl = document.createElement('th')
-        scoreTtl.textContent = 'Score'
-    firstRow.appendChild(intlTtl)
-    firstRow.appendChild(scoreTtl)
+        var firstRow = document.createElement('tr')
+            firstRow.className = 'first-row'
+        tableEl.appendChild(firstRow)
+        var intlTtl = document.createElement('th')
+            intlTtl.textContent = 'Initials'
+        var scoreTtl = document.createElement('th')
+            scoreTtl.textContent = 'Score'
+        firstRow.appendChild(intlTtl)
+        firstRow.appendChild(scoreTtl)
 
-    for (var i = 0; i < scoreList.length; i++) {
+    if (!scoreList) {
+        scoreTable.innerHTML = '<h4>No high scores yet!</h4>'
+    } else {
+        scoreList.sort (function(a,b) {return b.score - a.score})
+
+        for (var i = 0; i < scoreList.length; i++) {
         var tableRow = document.createElement('tr')
         tableEl.appendChild(tableRow)
         var initials = document.createElement('th')
@@ -28,7 +33,8 @@ function createScoreTable() {
             scoreValue.textContent = scoreList[i].score
         tableRow.appendChild(initials)
         tableRow.appendChild(scoreValue)
-    } 
+        }
+    }
 }
 createScoreTable()
 

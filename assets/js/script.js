@@ -54,7 +54,6 @@ var questionArr = [
         correct: '4. console.log'
     },
 ]
-    //console.log(questionArr)
 
 function countdown() {
     var timerEl = document.createElement('p')
@@ -65,8 +64,13 @@ function countdown() {
             timerEl.textContent = 'Time: ' + countTime + 's'
             countTime--
         } else {
+            if (countTime <= 10) {
+                countTime = 0
+            } else {
             alert('Time is out!')
+            countTime = 0
             displayScore()
+            }
         }
     }, 1000)
 }
@@ -106,7 +110,6 @@ function checkAnswer(event) {
             }else{
                 setTimeout(function(){quiz()}, 1000)
             }
-    //debugger
 }}
 
 
@@ -122,24 +125,24 @@ function displayScore() {
         var usersScore = document.createElement('p')
             usersScore.textContent = ('Your final score is ' + parseInt(countTime) + '!')
         finalScoreEl.appendChild(usersScore)
-        var inputDiv = document.createElement('div')
-            inputDiv.className = 'users-input'
-        finalScoreEl.appendChild(inputDiv)
+        var inputForm = document.createElement('form')
+            inputForm.className = 'users-input'
+        finalScoreEl.appendChild(inputForm)
         var inputLable = document.createElement('p')
             inputLable.textContent = 'Enter initials:'
-        inputDiv.appendChild(inputLable)
+        inputForm.appendChild(inputLable)
         var inputBox = document.createElement('input')
             inputBox.type = 'text'
             inputBox.id = 'usersName'
-        inputDiv.appendChild(inputBox)
+        inputForm.appendChild(inputBox)
         var submitBtn = document.createElement('button')
             submitBtn.id = 'submit-btn'
             submitBtn.textContent = 'Submit'
-        inputDiv.appendChild(submitBtn)
+        inputForm.appendChild(submitBtn)
         
     var scoreList = JSON.parse(localStorage.getItem('userScore'))
     if (!scoreList) scoreList = []
-    submitBtn.addEventListener('click', function(event){
+    inputForm.addEventListener('submit', function(event){
         event.preventDefault()
         var score = { score: countTime, name: inputBox.value.trim() }
         scoreList.push(score)
