@@ -9,7 +9,7 @@ var choicesEl = document.querySelector('#choices')
 var notice = document.querySelector('#notice')
 var interval
 var questionId = 0
-var countTime = 50
+var countTime = 75
 
 var questionArr = [
     {
