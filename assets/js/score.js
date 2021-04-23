@@ -1,9 +1,11 @@
 var scoreTable = document.querySelector('#score-table')
+var clearBtn = document.querySelector('#clear-btn')
 
 var scoreList = JSON.parse(localStorage.getItem('userScore'))
 console.log(scoreList)
 
 function createScoreTable() {
+    scoreTable.innerHTML = ''
     var tableEl = document.createElement('table')
     scoreTable.appendChild(tableEl)
 
@@ -26,6 +28,14 @@ function createScoreTable() {
             scoreValue.textContent = scoreList[i].score
         tableRow.appendChild(initials)
         tableRow.appendChild(scoreValue)
-}}
-
+    } 
+}
 createScoreTable()
+
+
+
+function clearTable () {
+    scoreTable.innerHTML = '<h4>No highscores!</h4>'
+    localStorage.clear()
+}
+clearBtn.addEventListener('click', clearTable)

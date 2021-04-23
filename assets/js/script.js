@@ -6,9 +6,10 @@ var startBtn = document.querySelector('#start-btn')
 var quizEl = document.querySelector('#quiz-questions')
 var questionEl = document.querySelector('#question')
 var choicesEl = document.querySelector('#choices')
+var notice = document.querySelector('#notice')
 var interval
 var questionId = 0
-var countTime = 60
+var countTime = 50
 
 var questionArr = [
     {
@@ -64,9 +65,8 @@ function countdown() {
             timerEl.textContent = 'Time: ' + countTime + 's'
             countTime--
         } else {
-            timerEl.textContent = ''
             alert('Time is out!')
-            clearInterval(interval)
+            displayScore()
         }
     }, 1000)
 }
@@ -74,7 +74,9 @@ startBtn.addEventListener('click', countdown)
 startBtn.addEventListener('click', quiz)
 
 function quiz() {
-    startingEl.innerHTML = ""
+    startingEl.innerHTML = ''
+    notice.textContent = ''
+    choicesEl.innerHTML=''
     questionEl.textContent = questionArr[questionId].question
         for (var i = 0; i < 4; i++) {
             var choiceBtn = document.createElement('button')
@@ -87,23 +89,23 @@ function quiz() {
 }
 
 function checkAnswer(event) {
-    choicesEl.innerHTML=''
-    // if (questionId === questionArr.length) {
-    //     score()
+    
     if (event.target.textContent === questionArr[questionId-1].correct) {
-        alert('correct!')
+        notice.textContent = 'Correct!'
             if (questionId === questionArr.length) {
-                displayScore()
+                setTimeout(function(){displayScore()}, 1000)
             }else{
-                quiz()}
+                setTimeout(function(){quiz()}, 1000)
+                }
     } else {
-        alert('wrong')
+        notice.textContent = 'Wrong!'
         countTime = countTime - 10
             if (questionId === questionArr.length) {
                 timeRemainingEl.innerHTML = ''
-                displayScore()
+                setTimeout(function(){displayScore()}, 1000)
             }else{
-                quiz()}
+                setTimeout(function(){quiz()}, 1000)
+            }
     //debugger
 }}
 
@@ -144,12 +146,4 @@ function displayScore() {
         localStorage.setItem('userScore', JSON.stringify(scoreList))
         window.location.assign('score-table.html')
     })
-}
-
-
-function scoreHTML() {
-    //window.location.assign = ('score-table.html')
-    
-//     var addScoreToTable = {score: countTime, name: inputBox}.value
-//     console.log ()
 }

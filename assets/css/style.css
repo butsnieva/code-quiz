@@ -133,3 +133,12 @@ table .first-row {
     background-color: rebeccapurple;
     color: white;
 } 
+
+#notice {
+    text-align: left;
+    margin: 10px 0;
+    font-style: italic;
+    font-size: 28px;
+    color: #b0adad;
+    width: 38%;
+}
